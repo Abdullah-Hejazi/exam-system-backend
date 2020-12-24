@@ -38,6 +38,12 @@ module.exports = {
     debug: Env.get('DB_DEBUG', false)
   },
 
+  sqlite_testing: {
+    client: 'sqlite3',
+    connection: ':memory:',
+    useNullAsDefault: true
+  },
+
   /*
   |--------------------------------------------------------------------------
   | MySQL

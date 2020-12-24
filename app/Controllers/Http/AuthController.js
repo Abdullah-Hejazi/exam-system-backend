@@ -9,9 +9,9 @@ class AuthController {
             email: 'required|email',
             password: 'required'
         }
-      
+
         const validation = await validate(request.all(), rules)
-      
+
         if (validation.fails()) {
             return response.status(401).send({
                 message: 'Invalid data !'

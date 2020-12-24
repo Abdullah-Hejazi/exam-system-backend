@@ -16,4 +16,4 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.post('signin', 'AuthController.login').middleware('guest')
+Route.post('login', 'AuthController.login').middleware('guest')
