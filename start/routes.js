@@ -17,3 +17,4 @@
 const Route = use('Route')
 
 Route.post('login', 'AuthController.login').middleware('guest')
+Route.post('create', 'AuthController.create').middleware('guest')

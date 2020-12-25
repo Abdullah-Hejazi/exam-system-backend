@@ -22,7 +22,39 @@ class AuthController {
         var token = await auth.attempt(email, password)
 
         return response.status(200).send({
-            token: token.token
+            token: token.token,
+            role: auth.user()
+        })
+    }
+
+    async create({request, response}) {
+        const rules = {
+            email: 'required|email',
+            password: 'required',
+            name: 'required',
+            role: 'required'
+        }
+
+        const validation = await validate(request.all(), rules)
+
+        if (validation.fails()) {
+            return response.status(401).send({
+                message: 'Invalid data !'
+            })
+        }
+
+        let userData = request.only(['email', 'password', 'role', 'name'])
+
+        try {
+            let user = await User.create(userData)
+        } catch(e) {
+            return response.status(401).send({
+                message: 'Something went wrong when creating the user.'
+            })
+        }
+
+        return response.status(200).send({
+            message: 'OK'
         })
     }
 }
