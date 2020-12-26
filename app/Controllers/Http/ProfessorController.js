@@ -28,7 +28,7 @@ class ProfessorController {
             })
         }
 
-        await Exam.create({
+        let exam = await Exam.create({
             user_id: auth.user.id,
             starts_at: new Date(request.input('starts_at')),
             duration: request.input('duration'),
@@ -36,35 +36,7 @@ class ProfessorController {
         })
 
         return response.status(200).send({
-            message: 'OK'
-        })
-    }
-
-    async editExam ({response, request, params}) {
-        const rules = {
-            starts_at: 'required',
-            name: 'required',
-            duration: 'required'
-        }
-
-        const validation = await validate(request.all(), rules)
-
-        if (validation.fails()) {
-            return response.status(401).send({
-                message: 'Invalid data !'
-            })
-        }
-
-        let exam = await Exam.findOrFail(params.id)
-
-        await Exam.query().where('id', params.id).update({
-            starts_at: new Date(request.input('starts_at')),
-            duration: request.input('duration'),
-            name: request.input('name')
-        })
-
-        return response.status(200).send({
-            message: 'OK'
+            id: exam.id
         })
     }
     

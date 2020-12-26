@@ -30,6 +30,5 @@ Route.group(() => {
 Route.group(() => {
     Route.get('home', 'ProfessorController.index')
     Route.post('exam/new', 'ProfessorController.newExam')
-    Route.post('exam/:id/edit', 'ProfessorController.editExam')
-    Route.post('exam/:id/add', 'ProfessorController.addQuestion')
+    Route.post('exam/:id/questions/add', 'ProfessorController.addQuestion')
 }).prefix('professors').middleware(['auth', 'professor'])

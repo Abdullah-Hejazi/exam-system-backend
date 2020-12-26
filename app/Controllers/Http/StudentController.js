@@ -18,7 +18,6 @@ class StudentController {
         let questions = await exam.questions().fetch()
 
         return response.status(200).send({
-            exam: exam,
             questions: questions
         })
     }

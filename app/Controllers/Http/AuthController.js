@@ -25,7 +25,8 @@ class AuthController {
 
         return response.status(200).send({
             token: token.token,
-            role: user.role
+            role: user.role,
+            name: user.name
         })
     }
 
