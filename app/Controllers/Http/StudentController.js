@@ -15,7 +15,7 @@ class StudentController {
 
     async exam ({response, params}) {
         let exam = await Exam.findOrFail(params.id)
-        let questions = await exam.questions().fetch()
+        let questions = await exam.questions().setHidden(['answer']).fetch()
 
         return response.status(200).send({
             questions: questions
@@ -89,7 +89,7 @@ class StudentController {
         })
 
         return response.status(200).send({
-            message: 'Done'
+            marks: marks
         })
     }
 
