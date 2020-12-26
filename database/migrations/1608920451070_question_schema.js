@@ -10,7 +10,9 @@ class QuestionSchema extends Schema {
       table.text('question').notNullable()
       table.integer('exam_id').notNullable().unsigned().references('id').inTable('exams')
       table.enu('type', ['truefalse', 'multichoice']).notNullable()
+      table.string('options', 500).default(null)
       table.string('answer', 200).notNullable()
+      table.integer('marks').notNullable()
       table.timestamps()
     })
   }

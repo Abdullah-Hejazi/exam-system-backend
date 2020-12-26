@@ -18,3 +18,18 @@ const Route = use('Route')
 
 Route.post('login', 'AuthController.login').middleware('guest')
 Route.post('create', 'AuthController.create').middleware('guest')
+
+// Students
+Route.group(() => {
+    Route.get('home', 'StudentController.index')
+    Route.get('exam/:id', 'StudentController.exam')
+    Route.post('exam/:id/answer', 'StudentController.answer')
+}).prefix('students').middleware(['auth', 'student'])
+
+// Professors
+Route.group(() => {
+    Route.get('home', 'ProfessorController.index')
+    Route.post('exam/new', 'ProfessorController.newExam')
+    Route.post('exam/:id/edit', 'ProfessorController.editExam')
+    Route.post('exam/:id/add', 'ProfessorController.addQuestion')
+}).prefix('professors').middleware(['auth', 'professor'])

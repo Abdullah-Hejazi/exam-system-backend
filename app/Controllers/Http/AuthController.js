@@ -21,9 +21,11 @@ class AuthController {
         const { email, password } = request.all()
         var token = await auth.attempt(email, password)
 
+        var user = await User.query().where('email', email).first()
+
         return response.status(200).send({
             token: token.token,
-            role: auth.user()
+            role: user.role
         })
     }
 
